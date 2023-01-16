@@ -11,10 +11,10 @@ namespace Medicine_Project.Classes
     {
         // TRAINING DATA
 
-        static List<bool> Diagnosis = new List<bool>();
-        static List<List<float>> Temperatures = new List<List<float>>();
+        static public List<bool> Diagnosis = new List<bool>();
+        static public List<List<float>> Temperatures = new List<List<float>>();
 
-        static public void ReadData()
+        static public void ReadTrainingData()
         {
             byte[] DataFile;
             string filePathData = @"../../../../../est-prog.dat";

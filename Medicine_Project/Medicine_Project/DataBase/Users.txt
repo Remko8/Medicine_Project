@@ -3,3 +3,6 @@ Login,Login123,Login,Login123,patient,Login@gmail.com
 Doctor,Doctor123,Doctor,Doctor123,Doctor,Doctor@gmail.com
 George,Smith,George,George123,patient,George@mail.com
 George,Smith,George123,George123,patient,George@mail.com
+George,Smith,George123,George123,patient,George@mail.com
+George,Smith,George123,George123,patient,George@mail.com
+22,Smith,George123,George123,patient,George@mail.com
