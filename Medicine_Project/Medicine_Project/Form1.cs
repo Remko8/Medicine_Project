@@ -1,3 +1,4 @@
+using Medicine_Project.Classes;
 using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Medicine_Project
@@ -5,29 +6,11 @@ namespace Medicine_Project
     public partial class Form1 : Form
     {
 
-        public static List<List<string>> Users = new List<List<string>>();
-        string filePath = @"../../../DataBase/Users.txt";
-
         public Form1()
         {
-            ReadUsers();
+            Data.ReadUsers();
+            Data.ReadData();
             InitializeComponent();
-        }
-
-        private void ReadUsers()
-        {            
-            if (File.Exists(filePath))
-            {
-                string[] UsersFile = File.ReadAllLines(filePath);
-                foreach (string line in UsersFile)
-                {
-                    Users.Add(line.Split(',').ToList());
-                }
-            }
-            else
-            {
-                MessageBox.Show("Cannot connect to server(Users)");
-            }
         }
 
         bool mousedown;
@@ -62,7 +45,7 @@ namespace Medicine_Project
 
         private void SignInButton_Click(object sender, EventArgs e)
         {
-            foreach (List<String> user in Users)
+            foreach (List<String> user in Data.Users)
             {
                 if (UsernameTextBox.Text == user[2] && PasswordTextBox.Text == user[3])
                 {
@@ -111,12 +94,12 @@ namespace Medicine_Project
         private void SignUppedButton_Click(object sender, EventArgs e)
         {            
             string line = FirstNameTXT.Text + "," + SecondNameTXT.Text + "," + UsernameTXT.Text + "," + PasswordTXT.Text + "," + "patient" + "," + EmailTXT.Text;
-            line = Users.Count > 0 ? Environment.NewLine + line : line;
-            File.AppendAllText(filePath, line);
+            line = Data.Users.Count > 0 ? Environment.NewLine + line : line;
+            File.AppendAllText(Data.filePath, line);
             SignUpPanel.Hide();
             AcceptButton = SignInButton;
 
-            ReadUsers();
+            Data.ReadUsers();
 
             FirstNameTXT.Clear();
             SecondNameTXT.Clear();
@@ -142,26 +125,28 @@ namespace Medicine_Project
 
         private void ChangePasswordButton_Click(object sender, EventArgs e)
         {
-            int usernameId =  Users.FindIndex(x => x[2] == UsernameFPTXT.Text);
-            int emailId = Users.FindIndex(x => x[5] == EmailFPTXT.Text);
+            int usernameId =  Data.Users.FindIndex(x => x[2] == UsernameFPTXT.Text);
+            int emailId = Data.Users.FindIndex(x => x[5] == EmailFPTXT.Text);
 
-            if (usernameId == emailId)
+            if (usernameId == emailId && usernameId != -1)
             {
-                Users[usernameId][3] = NewPasswordTXT.Text;
+                Data.Users[usernameId][3] = NewPasswordTXT.Text;
 
-                File.WriteAllText(filePath, "");
+                File.WriteAllText(Data.filePath, "");
 
-                foreach (var line in Users)
+                foreach (var line in Data.Users)
                 {
                     var result = String.Join(",", line.ToArray());
-                    File.AppendAllText(filePath, result);
+                    File.AppendAllText(Data.filePath, result);
                 }
 
-                ReadUsers();
+                Data.ReadUsers();
+
+                ForgetPasswordPanel.Hide();
+                AcceptButton = SignInButton;
+                UsernameTextBox.Focus();
             }
-            ForgetPasswordPanel.Hide();
-            AcceptButton = SignInButton;
-            UsernameTextBox.Focus();
+            MessageBox.Show("User not found");
         }
     }
 }
