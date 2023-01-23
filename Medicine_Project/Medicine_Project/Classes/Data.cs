@@ -18,6 +18,7 @@ namespace Medicine_Project.Classes
 
         static public List<bool> Diagnosis = new List<bool>();
         static public List<List<float>> Temperatures = new List<List<float>>();
+        static public List<List<float>> TrainingData = new List<List<float>>();
 
         static public void ReadTrainingData()
         {
@@ -28,9 +29,11 @@ namespace Medicine_Project.Classes
             {
                 Diagnosis.Clear();
                 Temperatures.Clear();
+                TrainingData.Clear();
 
                 int row = 0;
                 Temperatures.Add(new List<float>());
+                TrainingData.Add(new List<float>());
 
                 DataFile = File.ReadAllBytes(filePathData);
                 for (int i = 0; i < DataFile.Count(); i += 4)
@@ -39,15 +42,21 @@ namespace Medicine_Project.Classes
                     if ((i + 4) % 40 != 0)
                     {
                         Temperatures[row].Add(MathF.Round(BitConverter.ToSingle(arr), 2));
+                        TrainingData[row].Add(MathF.Round(BitConverter.ToSingle(arr), 2));
+
                     }
                     else
                     {
+                        TrainingData[row].Add(MathF.Round(BitConverter.ToSingle(BitConverter.ToBoolean(arr))),2));
+                        TrainingData.Add(new List<float>());
+
                         Diagnosis.Add(BitConverter.ToBoolean(arr));
                         Temperatures.Add(new List<float>());
                         row++;
                     }
                 }
                 Temperatures.RemoveAt(Temperatures.Count() - 1); // removing last row because its always empty
+                TrainingData.RemoveAt(TrainingData.Count() - 1);
             }
             else
             {
