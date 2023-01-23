@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Medicine_Project.Classes
 {
-    internal class KNearestNeighbor
+    internal class KNearestNeighbor : NeuralNetwork
     {
         private readonly int kNN;
         public KNearestNeighbor(int k = 3) 

@@ -4,7 +4,6 @@ E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\bin\Debug\net6.0-windows\Medicine_Project.dll
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\bin\Debug\net6.0-windows\Medicine_Project.pdb
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.csproj.AssemblyReference.cache
-E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.Form1.resources
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.Properties.Resources.resources
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.csproj.GenerateResource.cache
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.GeneratedMSBuildEditorConfig.editorconfig
@@ -18,3 +17,8 @@ E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\ref\Medicine_Project.dll
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.Doctor.resources
 E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.Patient.resources
+E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.csproj.CopyComplete
+E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.Form1.resources
+E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\bin\Debug\net6.0-windows\OxyPlot.dll
+E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\bin\Debug\net6.0-windows\OxyPlot.WindowsForms.dll
+E:\Programowanie\Studia\Drugi_Stopien\Semestr_3\AI_in_Medicine\Medicine_Project\Medicine_Project\Medicine_Project\obj\Debug\net6.0-windows\Medicine_Project.AddTemperature.resources

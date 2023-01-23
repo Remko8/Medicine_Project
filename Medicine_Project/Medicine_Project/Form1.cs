@@ -1,18 +1,31 @@
 using Medicine_Project.Classes;
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Configuration;
 using System.Diagnostics;
+using static Medicine_Project.Form1.UserColumn;
 
 namespace Medicine_Project
 {
     public partial class Form1 : Form
     {
+        public static class UserColumn
+        {
+            public const int id = 0;
+            public const int name = 1;
+            public const int surname = 2;
+            public const int username = 3;
+            public const int password = 4;
+            public const int rank = 5;
+            public const int email = 6;
+        }
 
         public Form1()
         {
             InitializeComponent();
-            Data.ReadUsers();
-            Data.ReadTrainingData();
+            Data.form1 = this;
 
+            Data.ReadUsers();
+            Data.ReadTrainingData();            
 
             // >>> testing KNearestNeighbor
             List<bool> diagnosis = new List<bool>();
@@ -68,16 +81,19 @@ namespace Medicine_Project
         {
             foreach (List<String> user in Data.Users)
             {
-                if (UsernameTextBox.Text == user[2] && PasswordTextBox.Text == user[3])
+                if (UsernameTextBox.Text == user[username] && PasswordTextBox.Text == user[password])
                 {
-                    if (user[4] == "doctor")
+                    if (user[rank] == "doctor")
                     {
                         new Doctor().Show();                        
                     }
-                    else if(user[4] == "patient")
+                    else if(user[rank] == "patient")
                     {
+                        Data.User = user;
+                        Data.ReadTemperatures();
                         new Patient().Show();
                     }
+
                     this.Hide();
                     return;
                 }
@@ -119,7 +135,7 @@ namespace Medicine_Project
                 return;
             }
 
-            string line = FirstNameTXT.Text + "," + SecondNameTXT.Text + "," + UsernameTXT.Text + "," + PasswordTXT.Text + "," + "patient" + "," + EmailTXT.Text;
+            string line = Data.Users.Count + "," + FirstNameTXT.Text + "," + SecondNameTXT.Text + "," + UsernameTXT.Text + "," + PasswordTXT.Text + "," + "patient" + "," + EmailTXT.Text;
             line = Data.Users.Count > 0 ? Environment.NewLine + line : line;
             File.AppendAllText(Data.filePath, line);
             SignUpPanel.Hide();
@@ -138,13 +154,13 @@ namespace Medicine_Project
 
         private bool SignUpValidation()
         {
-            if (Data.Users.Select(x => x[2]).Contains(UsernameTXT.Text) || Data.Users.Select(x => x[3]).Contains(PasswordTXT.Text))
+            if (Data.Users.Select(x => x[username]).Contains(UsernameTXT.Text) || Data.Users.Select(x => x[password]).Contains(PasswordTXT.Text))
             {
                 MessageBox.Show("This account already exists");
                 return false;
             }
 
-            if (Data.Users.Select(x => x[5]).Contains(EmailTXT.Text))
+            if (Data.Users.Select(x => x[email]).Contains(EmailTXT.Text))
             {
                 MessageBox.Show("This e-mail has been already used");
                 return false;
@@ -175,12 +191,12 @@ namespace Medicine_Project
 
         private void ChangePasswordButton_Click(object sender, EventArgs e)
         {
-            int usernameId =  Data.Users.FindIndex(x => x[2] == UsernameFPTXT.Text);
-            int emailId = Data.Users.FindIndex(x => x[5] == EmailFPTXT.Text);
+            int usernameId =  Data.Users.FindIndex(x => x[username] == UsernameFPTXT.Text);
+            int emailId = Data.Users.FindIndex(x => x[email] == EmailFPTXT.Text);
 
             if (usernameId == emailId && usernameId != -1)
             {
-                Data.Users[usernameId][3] = NewPasswordTXT.Text;
+                Data.Users[usernameId][password] = NewPasswordTXT.Text;
 
                 File.WriteAllText(Data.filePath, "");
 

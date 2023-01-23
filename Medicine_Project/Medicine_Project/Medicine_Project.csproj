@@ -27,4 +27,8 @@
     <Folder Include="DataBase\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="OxyPlot.WindowsForms" Version="2.1.2" />
+  </ItemGroup>
+
 </Project>

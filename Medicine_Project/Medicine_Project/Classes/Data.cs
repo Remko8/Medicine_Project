@@ -9,6 +9,11 @@ namespace Medicine_Project.Classes
 {
     static class Data
     {
+        // WINDOWS
+
+        public static Form? PatientForm;
+        public static Form? form1;
+
         // TRAINING DATA
 
         static public List<bool> Diagnosis = new List<bool>();
@@ -21,6 +26,9 @@ namespace Medicine_Project.Classes
 
             if (File.Exists(filePathData))
             {
+                Diagnosis.Clear();
+                Temperatures.Clear();
+
                 int row = 0;
                 Temperatures.Add(new List<float>());
 
@@ -56,6 +64,7 @@ namespace Medicine_Project.Classes
         {
             if (File.Exists(filePath))
             {
+                Users.Clear();
                 string[] UsersFile = File.ReadAllLines(filePath);
                 foreach (string line in UsersFile)
                 {
@@ -66,6 +75,31 @@ namespace Medicine_Project.Classes
             {
                 MessageBox.Show("Cannot connect to server(Users)");
             }
+        }
+
+        // ACTIVE USER
+        public static List<string> User = new List<string>();
+        public static List<List<string>> UserTemperatures = new List<List<string>>();
+        public static List<List<string>> AllUsersTemperatures = new List<List<string>>();
+        public static string filePathTemperatures = @"../../../DataBase/UserTemperatures.txt";
+
+        public static void ReadTemperatures()
+        {            
+            if (File.Exists(filePathTemperatures))
+            {
+                AllUsersTemperatures.Clear();
+                string[] temperaturesFile = File.ReadAllLines(filePathTemperatures);
+                foreach (string line in temperaturesFile)
+                {
+                    AllUsersTemperatures.Add(line.Split(',').ToList());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Cannot read temperatures");
+            }
+
+            UserTemperatures = AllUsersTemperatures.Where(x => x[0] == User[0]).ToList();
         }
     }
 }
