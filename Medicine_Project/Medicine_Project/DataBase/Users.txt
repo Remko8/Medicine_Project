@@ -1,0 +1,11 @@
+0,Admin,Admin123,Admin,Admin123,admin,admin@gmail.com
+1,Login,Login123,Login,Login123,patient,Login@gmail.com
+2,Doctor,Doctor123,Doctor,Doctor123,Doctor,Doctor@gmail.com
+3,George,Smith,George,George123,patient,George@mail.com
+4,George,Smith,George123,George123,patient,George@mail.com
+5,George,Smith,George123,George123,patient,George@mail.com
+6,George,Smith,George123,George123,patient,George@mail.com
+7,22,Smith,George123,George123,patient,George@mail.com
+8,George,Smith,g1,g1,patient,g1@mail.com
+9,Anna,Nokia,anna,anna,patient,Anna@mail.com
+10,May,Smith,may,may,patient,May@gmail.com
