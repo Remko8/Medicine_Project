@@ -9,6 +9,9 @@ namespace Medicine_Project.Classes
     internal class NeuralNetwork : MachineLearning
     {
         List<Layer> layers = new();
+        List<float> maxs;
+        List<float> mins;
+
         private class Layer
         {
             public int neurons;
@@ -42,11 +45,11 @@ namespace Medicine_Project.Classes
 
         public void Normalize(List<List<float>> data)
         {
-            List<float> maxs = new List<float>(new float[data[0].Count - 1]);
+            maxs = new List<float>(new float[data[0].Count]);
 
 
 
-            for (int i = 0; i < data[0].Count - 1; i++)
+            for (int i = 0; i < data[0].Count; i++)
             {
                 for (int j = 0; j < data.Count; j++)
                 {
@@ -54,8 +57,8 @@ namespace Medicine_Project.Classes
                 }
             }
 
-            List<float> mins = maxs.Select(x => x).ToList();
-            for (int i = 0; i < data[0].Count - 1; i++)
+            mins = maxs.Select(x => x).ToList();
+            for (int i = 0; i < data[0].Count; i++)
             {
                 for (int j = 0; j < data.Count; j++)
                 {
@@ -64,11 +67,11 @@ namespace Medicine_Project.Classes
             }
 
 
-            for (int i = 0; i < data[0].Count - 1; i++)
+            for (int i = 0; i < data[0].Count; i++)
             {
                 for (int j = 0; j < data.Count; j++)
                 {
-                    Data.Temperatures[j][i] = (Data.Temperatures[j][i] - mins[i]) / (maxs[i] - mins[i]);
+                    Data.Temperatures[j][i] = (Data.Temperatures[j][i] - mins[i]) / (maxs[i] - mins[i]);                    
                 }
             }
 
@@ -79,6 +82,15 @@ namespace Medicine_Project.Classes
                     Data.Diagnosis[j][i] = (Data.Diagnosis[j][i] - mins[i]) / (maxs[i] - mins[i]);
                 }
             }*/
+        }
+
+        public List<float> NormalizeRow(List<float> data)
+        {
+            for (int j = 0; j < data.Count; j++)
+            {
+                data[j] = (data[j] - mins[j]) / (maxs[j] - mins[j]);
+            }          
+            return data;
         }
 
         public void Compile(string loss, string optimizer, string metric)
@@ -130,13 +142,13 @@ namespace Medicine_Project.Classes
                     layers[0].inputs.Clear();
                     layers[0].inputs.Add(1);
                     layers[0].inputs.AddRange(dataRow);
-                    layers[0].inputs.RemoveAt(dataRow.Count);
+                    //layers[0].inputs.RemoveAt(dataRow.Count); // <-------------
 
                     // --------------------
                     // list init
                     List<List<float>> eska = new List<List<float>>();
-                    eska.Add(new List<float>(new float[6]));
-                    eska.Add(new List<float>(new float[6]));
+                    eska.Add(new List<float>(new float[10]));
+                    eska.Add(new List<float>(new float[10]));
                     eska.Add(new List<float>(new float[1]));
 
                     /*for (int l = 0; l < layers.Count; l++)
@@ -191,52 +203,7 @@ namespace Medicine_Project.Classes
                     float derivativeeee = ss1 * ss2;
                     var sigmaaa = error * derivative;
                     ;
-                    // ----------
-
-                    /*
-                    for (int l = size; l > 0; l--)
-                    {
-                        List<double> errorList = new List<double>();
-                        List<double> derivativeList = new List<double>();
-
-                        for (int n = 0; n < layers[l].neurons; n++)                            
-                        {
-                            double error_ = 0;
-                            for (int i = 0; i < layers[l].inputs.Count; i++)
-                            {
-                                error_ += sigma[l][n] * layers[l].weights[n][i];
-                            }
-                            errorList.Add(error_);
-                            var derivativeTest = Sigmoid(-eska[l - 1][n]);
-                            derivative = Sigmoid(-eska[l-1][n]) * (1 - Sigmoid(-eska[l-1][n]));
-                            derivativeList.Add(derivative);
-
-                            sigma[l-1][n] = errorList[n] * derivativeList[n];
-                        }
-                    }
-                    */
-                    /// TEST >>>
-                    /*for (int l = size; l > 0; l--)
-                    {
-                        List<double> errorList = new List<double>();
-                        List<double> derivativeList = new List<double>();
-
-                        for (int i = 0; i < layers[l].inputs.Count; i++)                            
-                        {
-                            double error_ = 0;
-                            for (int n = 0; n < layers[l].weights.Count; n++)
-                            {
-                                error_ += sigma[l][n] * layers[l].weights[n][i];
-                            }
-                            errorList.Add(error_);
-                            var derivativeTest = Sigmoid(-eska[l - 1][i]);
-                            derivative = Sigmoid(-eska[l - 1][i]) * (1 - Sigmoid(-eska[l - 1][i]));
-                            derivativeList.Add(derivative);
-
-                            sigma[l - 1][i] = errorList[i] * derivativeList[i];
-                        }
-                    }*/
-                    /// TEST <<<
+                    // ----------              
 
                     /// TEST2 >>>
 
@@ -295,135 +262,13 @@ namespace Medicine_Project.Classes
             var newWeights = layers[2].weights.Select(x => x).ToList();
         }
 
-        public void FitOld(List<List<float>> data, int epochs, bool shuffle = false, float validationSplit = 0.2f)
-        {
-            var oldWeights = layers[2].weights;
-            for (int e = 0; e < epochs; e++)
-            {
-                for (int t = 0; t < data.Count; t++)
-                {
-                    var dataRow = data[t];
-
-                    layers[0].inputs.Clear();
-                    layers[0].inputs.Add(1);
-                    layers[0].inputs.AddRange(dataRow); // later data[t]
-                    layers[0].inputs.RemoveAt(dataRow.Count);
-
-                    int epoch = 1;
-
-                    // --------------------
-                    // list init
-                    List<List<float>> s = new List<List<float>>();
-
-                    for (int l = 0; l < layers.Count; l++)
-                    {
-                        s.Add(new List<float>(new float[layers[l].inputs.Count - 1]));
-                    }
-
-                    List<List<float>> sigma = new(s);
-
-                    var test1 = layers[0].inputs;
-                    var test2 = layers[1].inputs;
-                    var test3 = layers[2].inputs;
-                    var test4 = dataRow;
-
-
-                    List<float> prediction = new List<float>();
-
-                    for (int l = 0; l < layers.Count; l++)
-                    {
-                        for (int i = 0; i < layers[l].weights.Count; i++)
-                        {
-                            for (int j = 0; j < layers[l].inputs.Count; j++)
-                            {
-                                s[l][i] += layers[l].inputs[j] * layers[l].weights[i][j];
-                            }
-                            if (l == layers.Count - 1)
-                            {
-                                var result = Sigmoid(-s[l][i]);
-                                prediction.Add(Sigmoid(-s[l][i]));
-                            }
-                            else
-                            {
-                                layers[l + 1].inputs[i + 1] = reLu(s[l][i]);
-                            }
-                        }
-                    }
-
-                    // --------------------
-                    // later: error => error[t];            
-                    // - List<List<double>> sigma = new(eska);
-                    // - sigma = sigma.Select(x => x.Select(z => 0.0).ToList()).ToList();
-
-                    // third layer
-                    //double prediction = Convert.ToDouble(Predict(data));
-
-
-                    float error = dataRow[dataRow.Count - 1] - prediction[0]; // data[t][ -1]
-                    float derivative = Sigmoid(-s[2][0]) * (1 - Sigmoid(-s[2][0]));
-                    sigma[2][0] = error * derivative;
-
-                    //second layer            
-                    List<float> error2 = new List<float>();
-                    List<float> derivative2 = new List<float>();
-
-
-                    for (int i = 0; i < layers[2].inputs.Count; i++)
-                    {
-                        error = sigma[2][0] * layers[2].weights[0][i];
-                        error2.Add(error);
-
-                        //derivative = Sigmoid(-s[1][i]) * (1 - Sigmoid(-s[1][i]));
-                        derivative = reLuDerivative(s[1][i]);
-                        derivative2.Add(derivative);
-
-                        sigma[1][i] = error2[i] * derivative2[i];
-                    }
-
-                    //first layer
-                    List<float> error3 = new List<float>();
-                    List<float> derivative3 = new List<float>();
-
-                    for (int i = 0; i < layers[1].inputs.Count; i++)
-                    {
-                        error = 0;
-                        for (int n = 0; n < layers[1].weights.Count; n++)
-                        {
-                            error += sigma[1][n] * layers[1].weights[n][i];
-                        }
-                        error3.Add(error);
-
-                        //derivative = Sigmoid(-s[0][i]) * (1 - Sigmoid(-s[0][i]));
-                        derivative = reLuDerivative(s[1][i]);
-                        derivative3.Add(derivative);
-
-                        sigma[0][i] = error3[i] * derivative3[i];
-                    }
-
-                    var oldWeights_ = layers[2].weights;
-
-                    // weights
-                    for (int l = 0; l < layers.Count; l++)
-                    {
-                        for (int n = 0; n < layers[l].weights.Count; n++)
-                        {
-                            for (int i = 0; i < layers[l].inputs.Count; i++)
-                            {
-                                layers[l].weights[n][i] = layers[l].weights[n][i] + 0.2f * sigma[l][n] * layers[l].inputs[i];
-                            }
-                        }
-                    }
-                    var newWeights_ = layers[2].weights;
-                }
-            }
-            var newWeights = layers[2].weights;
-        }
-
         public float Predict(List<float> data)
         {
             layers[0].inputs.Clear();
             layers[0].inputs.Add(1);
-            layers[0].inputs.AddRange(data);
+
+            //layers[0].inputs.AddRange(data);
+            layers[0].inputs.AddRange(NormalizeRow(data));
 
             float prediction = -1f;
 

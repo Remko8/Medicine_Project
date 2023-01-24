@@ -111,6 +111,7 @@
             this.TempTXT.Size = new System.Drawing.Size(184, 23);
             this.TempTXT.TabIndex = 22;
             this.TempTXT.Text = "36.6";
+            this.TempTXT.TextChanged += new System.EventHandler(this.TempTXT_TextChanged);
             // 
             // label6
             // 

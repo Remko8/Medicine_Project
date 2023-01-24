@@ -63,6 +63,7 @@
             this.NeuralNetworkButton = new System.Windows.Forms.RadioButton();
             this.SignOutButton = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.predictLabel = new System.Windows.Forms.Label();
             KNNComboBox = new System.Windows.Forms.ComboBox();
             this.backgroundPanel.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -90,6 +91,7 @@
             // 
             this.backgroundPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.backgroundPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.backgroundPanel.Controls.Add(this.predictLabel);
             this.backgroundPanel.Controls.Add(this.label8);
             this.backgroundPanel.Controls.Add(this.label7);
             this.backgroundPanel.Controls.Add(this.label6);
@@ -111,9 +113,9 @@
             this.backgroundPanel.Controls.Add(this.panel3);
             this.backgroundPanel.Controls.Add(this.panel2);
             this.backgroundPanel.Controls.Add(this.panel1);
-            this.backgroundPanel.Location = new System.Drawing.Point(51, 78);
+            this.backgroundPanel.Location = new System.Drawing.Point(51, 69);
             this.backgroundPanel.Name = "backgroundPanel";
-            this.backgroundPanel.Size = new System.Drawing.Size(595, 238);
+            this.backgroundPanel.Size = new System.Drawing.Size(595, 247);
             this.backgroundPanel.TabIndex = 1;
             // 
             // label8
@@ -121,7 +123,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(524, 199);
+            this.label8.Location = new System.Drawing.Point(522, 211);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 19);
             this.label8.TabIndex = 19;
@@ -132,7 +134,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(463, 199);
+            this.label7.Location = new System.Drawing.Point(461, 211);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 19);
             this.label7.TabIndex = 18;
@@ -143,7 +145,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(406, 199);
+            this.label6.Location = new System.Drawing.Point(404, 211);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 19);
             this.label6.TabIndex = 17;
@@ -154,7 +156,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(345, 199);
+            this.label5.Location = new System.Drawing.Point(343, 211);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 19);
             this.label5.TabIndex = 16;
@@ -165,7 +167,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(285, 199);
+            this.label4.Location = new System.Drawing.Point(283, 211);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 19);
             this.label4.TabIndex = 15;
@@ -176,7 +178,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(227, 199);
+            this.label3.Location = new System.Drawing.Point(225, 211);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 19);
             this.label3.TabIndex = 14;
@@ -187,7 +189,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(165, 199);
+            this.label2.Location = new System.Drawing.Point(163, 211);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 19);
             this.label2.TabIndex = 13;
@@ -198,7 +200,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(105, 199);
+            this.label1.Location = new System.Drawing.Point(103, 211);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 19);
             this.label1.TabIndex = 12;
@@ -209,7 +211,7 @@
             this.label0.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label0.AutoSize = true;
             this.label0.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label0.Location = new System.Drawing.Point(50, 199);
+            this.label0.Location = new System.Drawing.Point(48, 211);
             this.label0.Name = "label0";
             this.label0.Size = new System.Drawing.Size(44, 19);
             this.label0.TabIndex = 11;
@@ -219,7 +221,7 @@
             // 
             this.tempMaxLabel.AutoSize = true;
             this.tempMaxLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tempMaxLabel.Location = new System.Drawing.Point(5, 16);
+            this.tempMaxLabel.Location = new System.Drawing.Point(3, 28);
             this.tempMaxLabel.Name = "tempMaxLabel";
             this.tempMaxLabel.Size = new System.Drawing.Size(44, 21);
             this.tempMaxLabel.TabIndex = 10;
@@ -229,7 +231,7 @@
             // 
             this.tempAVGLabel.AutoSize = true;
             this.tempAVGLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tempAVGLabel.Location = new System.Drawing.Point(3, 98);
+            this.tempAVGLabel.Location = new System.Drawing.Point(1, 110);
             this.tempAVGLabel.Name = "tempAVGLabel";
             this.tempAVGLabel.Size = new System.Drawing.Size(40, 21);
             this.tempAVGLabel.TabIndex = 9;
@@ -239,16 +241,17 @@
             // 
             this.tempMinLabel.AutoSize = true;
             this.tempMinLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tempMinLabel.Location = new System.Drawing.Point(5, 181);
+            this.tempMinLabel.Location = new System.Drawing.Point(3, 193);
             this.tempMinLabel.Name = "tempMinLabel";
             this.tempMinLabel.Size = new System.Drawing.Size(28, 21);
             this.tempMinLabel.TabIndex = 8;
             this.tempMinLabel.Text = "36";
+            this.tempMinLabel.Click += new System.EventHandler(this.tempMinLabel_Click);
             // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel9.Location = new System.Drawing.Point(528, 16);
+            this.panel9.Location = new System.Drawing.Point(526, 28);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(40, 180);
             this.panel9.TabIndex = 3;
@@ -256,7 +259,7 @@
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel8.Location = new System.Drawing.Point(467, 16);
+            this.panel8.Location = new System.Drawing.Point(465, 28);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(40, 180);
             this.panel8.TabIndex = 3;
@@ -264,7 +267,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel7.Location = new System.Drawing.Point(410, 16);
+            this.panel7.Location = new System.Drawing.Point(408, 28);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(40, 180);
             this.panel7.TabIndex = 2;
@@ -272,7 +275,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel6.Location = new System.Drawing.Point(349, 16);
+            this.panel6.Location = new System.Drawing.Point(347, 28);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(40, 180);
             this.panel6.TabIndex = 2;
@@ -280,7 +283,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel5.Location = new System.Drawing.Point(289, 16);
+            this.panel5.Location = new System.Drawing.Point(287, 28);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(40, 180);
             this.panel5.TabIndex = 2;
@@ -288,7 +291,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel4.Location = new System.Drawing.Point(231, 16);
+            this.panel4.Location = new System.Drawing.Point(229, 28);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(40, 180);
             this.panel4.TabIndex = 2;
@@ -296,7 +299,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel3.Location = new System.Drawing.Point(169, 16);
+            this.panel3.Location = new System.Drawing.Point(167, 28);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(40, 180);
             this.panel3.TabIndex = 2;
@@ -304,7 +307,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel2.Location = new System.Drawing.Point(109, 16);
+            this.panel2.Location = new System.Drawing.Point(107, 28);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(40, 180);
             this.panel2.TabIndex = 1;
@@ -313,7 +316,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.GrayText;
-            this.panel1.Location = new System.Drawing.Point(53, 16);
+            this.panel1.Location = new System.Drawing.Point(51, 28);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(40, 180);
             this.panel1.TabIndex = 0;
@@ -337,7 +340,7 @@
             this.AddTmpButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddTmpButton.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.AddTmpButton.ForeColor = System.Drawing.SystemColors.Info;
-            this.AddTmpButton.Location = new System.Drawing.Point(51, 328);
+            this.AddTmpButton.Location = new System.Drawing.Point(51, 334);
             this.AddTmpButton.Name = "AddTmpButton";
             this.AddTmpButton.Size = new System.Drawing.Size(218, 44);
             this.AddTmpButton.TabIndex = 3;
@@ -442,9 +445,18 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(377, 328);
+            this.monthCalendar1.Location = new System.Drawing.Point(377, 334);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 5;
+            // 
+            // predictLabel
+            // 
+            this.predictLabel.AutoSize = true;
+            this.predictLabel.Location = new System.Drawing.Point(535, 11);
+            this.predictLabel.Name = "predictLabel";
+            this.predictLabel.Size = new System.Drawing.Size(18, 15);
+            this.predictLabel.TabIndex = 6;
+            this.predictLabel.Text = "-1";
             // 
             // Patient
             // 
@@ -505,5 +517,6 @@
         private MonthCalendar monthCalendar1;
         private RadioButton NeuralNetworkButton;
         private RadioButton KNearestNeighborsButton;
+        private Label predictLabel;
     }
 }

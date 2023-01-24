@@ -28,19 +28,21 @@ namespace Medicine_Project
             helloUserLabel.Text += " " + Data.User[1];
             isNN = NeuralNetworkButton.Checked;
 
-            if (isNN == true) {
+            var ttt = Data.Temperatures;
+            //if (isNN == true) {
                 model = new NeuralNetwork();
-                model.Add(5, "relu");
-                model.Add(5, "relu");
+                model.Add(9, "relu");
+                model.Add(9, "relu");
                 model.Add(1, "sigmoid");
                 model.Compile("mse", "adam", "accuracy");
                 model.Normalize(Data.Temperatures);
                 model.Fit(Data.Temperatures, 1000);
-            }
-            else
-            {
+            var ttt2 = Data.Temperatures;
+           // }
+           // else
+           //{
                 model2 = new KNearestNeighbor(kNN);
-            }
+           // }
             SetChart();
         }
         public override void Refresh()
@@ -60,10 +62,10 @@ namespace Medicine_Project
         }
 
         private void SetChartLabels(double min, double max)
-        {         
-            tempMinLabel.Text = min.ToString();
-            tempMaxLabel.Text = max.ToString();
-            tempAVGLabel.Text = ((min + max) / 2.0).ToString();
+        {
+            tempMinLabel.Text = Math.Round(min, 2).ToString();
+            tempMaxLabel.Text = Math.Round(max, 2).ToString();
+            tempAVGLabel.Text = Math.Round(((min + max) / 2.0), 2).ToString();
         }
         private void SetDate()
         {
@@ -107,8 +109,9 @@ namespace Medicine_Project
                         {
                             pred = Convert.ToSingle( model2.Predict(ftmp) );
                         }
+                        predictLabel.Text = pred.ToString(CultureInfo.InvariantCulture);
 
-                        if (pred > 0.5f)
+                        if (pred > 0.7f)
                         {
                             panelId.BackColor = SystemColors.HotTrack;                            
                         }
@@ -182,11 +185,19 @@ namespace Medicine_Project
         private void NeuralNetworkButton_CheckedChanged(object sender, EventArgs e)
         {
             isNN = true;
+            Data.PatientForm?.Refresh();
+
         }
 
         private void KNearestNeighborsButton_CheckedChanged(object sender, EventArgs e)
         {
             isNN = false;
+            Data.PatientForm?.Refresh();
+        }
+
+        private void tempMinLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
