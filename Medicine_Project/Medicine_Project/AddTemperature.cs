@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +48,24 @@ namespace Medicine_Project
 
         private void TemperatureSlider_Scroll(object sender, EventArgs e)
         {
-            TempTXT.Text = (TemperatureSlider.Value / 100.0).ToString();
+            var val = (TemperatureSlider.Value / 100.0).ToString();
+            var parse = double.Parse(val);
+            TempTXT.Text = parse.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private void TempTXT_TextChanged(object sender, EventArgs e)
+        {
+            var val = (int)(Convert.ToDouble(TempTXT.Text, CultureInfo.InvariantCulture) * 100);
+            if (val > TemperatureSlider.Maximum)
+            {
+                val = TemperatureSlider.Maximum;
+            }
+            if(val < TemperatureSlider.Minimum)
+            {
+                val = TemperatureSlider.Minimum;
+            }
+
+            TemperatureSlider.Value = val;
         }
     }
 }
