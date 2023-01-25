@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "LQ3mQzsR/g5kICRXi7nf6kkNiBK4tqetsxtN9HKXkzQvOMnajq/lKKjBqVNAsHmzPrn06Tvql1F6qao4heG56A==",
+  "success": true,
+  "projectFilePath": "E:\\Programowanie\\Studia\\Drugi_Stopien\\Semestr_3\\AI_in_Medicine\\Medicine_Project\\Medicine_Project\\Medicine_Project\\Medicine_Project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\przem\\.nuget\\packages\\oxyplot.core\\2.1.2\\oxyplot.core.2.1.2.nupkg.sha512",
+    "C:\\Users\\przem\\.nuget\\packages\\oxyplot.windowsforms\\2.1.2\\oxyplot.windowsforms.2.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
